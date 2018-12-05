@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body>
+<canvas id="abc" width="500" height="500"></canvas>
+<script>
+
+var Wt=function(can)
+{
+	var ca=can
+	var g=ca.getContext("2d");
+	var cj=null;
+	var self=this;
+	setInterval(function(){
+		self.update();
+	},1000/60);
+	this.replace=function(x)
+	{
+		cj=x;
+	}
+	this.update=function()
+	{
+		if(cj==null) return;
+		cj.update();
+		this.draw();
+	}
+	this.draw=function()
+	{
+		g.clearRect(0,0,500,500);
+		for(var i=0;i<cj.jj.lenght;i++)
+		{
+			g.fillRect(cj.jj[i].x,cj.jj[i].y,cj.jj[i].w,cj.jj[i].h);
+		}
+	}
+}
+var Cj=function()
+{
+	this.jj=[];
+	this.add=function(x)
+	{
+		this.jj[this.jj.length]=x;
+	}	
+	this.update=function()
+	{
+		for (var i=0;i<this.jj.length;i++)
+		this.jj[i].update();
+	}
+}
+var Jl=function()
+{
+	this.x=10;
+	this.y=10;
+	this.w=50;
+	this.h=50;
+	this.update=function()
+	{
+		
+	}
+}
+
+var wt1=new Wt(document.getElementById("abc"));
+var cj1=new Cj();
+var jj1=new Jl(10,10,10,10);
+var jj2=new Jl(20,20,20,20);
+
+cj1.add(jj1);
+wt1.replace(cj1);
+</script>
+</body>
+</html>
